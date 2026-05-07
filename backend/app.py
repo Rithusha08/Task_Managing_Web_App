@@ -110,10 +110,33 @@ def create_app():
     return app
 
 
+# app = create_app()
+
+# if __name__ == "__main__":
+#     with app.app_context():
+#         db.create_all()
+#         print("✅ Database tables ready")
+#     app.run(debug=True, port=5000)
 app = create_app()
 
+# Initialize database for production (Render)
+with app.app_context():
+    db.create_all()
+    from models import User
+    from extensions import bcrypt
+    
+    admin = User.query.filter_by(email='admin@gmail.com').first()
+    if not admin:
+        admin = User(
+            name='Admin',
+            email='admin@gmail.com',
+            password=bcrypt.generate_password_hash('admin@0805').decode('utf-8'),
+            role='admin'
+        )
+        db.session.add(admin)
+        db.session.commit()
+        print("✅ Default admin created: admin@gmail.com / admin@0805")
+    print("✅ Database tables ready")
+
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-        print("✅ Database tables ready")
     app.run(debug=True, port=5000)
