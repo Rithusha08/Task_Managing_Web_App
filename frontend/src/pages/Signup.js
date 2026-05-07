@@ -23,7 +23,7 @@ function Signup() {
     if (password.length < 6) { setError("Password must be at least 6 characters"); return; }
     setLoading(true); setError("");
     try {
-      await API.post("/signup", { name: name.trim(), email: email.trim(), password, role });
+      await API.post("/auth/signup", { name: name.trim(), email: email.trim(), password, role });
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed. Please try again.");
