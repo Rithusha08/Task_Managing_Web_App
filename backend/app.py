@@ -45,11 +45,14 @@ def create_app():
     #      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     #      allow_headers=["Content-Type", "Authorization"])
     # In create_app(), change CORS to:
+    # CORS(app, 
+    #     origins=[os.getenv("FRONTEND_URL", "http://localhost:3000")],
+    #     supports_credentials=True,
+    #     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    #     allow_headers=["Content-Type", "Authorization"])
     CORS(app, 
-        origins=[os.getenv("FRONTEND_URL", "http://localhost:3000")],
-        supports_credentials=True,
-        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-        allow_headers=["Content-Type", "Authorization"])
+     origins=["https://your-frontend.vercel.app"],
+     supports_credentials=True)
 
     # ── Handle OPTIONS preflight requests ───────────────────────
     @app.before_request
