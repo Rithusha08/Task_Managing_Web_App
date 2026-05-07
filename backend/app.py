@@ -18,6 +18,8 @@ def create_app():
 
     # ── Configuration ────────────────────────────────────────────
     db_url = os.getenv("DATABASE_URL", "sqlite:///taskflow.db")
+    # db_url = os.getenv("DATABASE_URL", "mysql://root:pMKnOQINkBrJFEAuMPPuRQidnJGGzOsQ@switchyard.proxy.rlwy.net:50649/railway")
+
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret-change-me")
