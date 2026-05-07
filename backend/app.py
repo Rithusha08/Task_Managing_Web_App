@@ -50,9 +50,15 @@ def create_app():
     #     supports_credentials=True,
     #     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     #     allow_headers=["Content-Type", "Authorization"])
+    # CORS(app, 
+    #  origins=["https://task-managing-web-4647tx837-rithusha08s-projects.vercel.app", "http://localhost:3000"],
+    #  supports_credentials=True)
+    # In create_app(), replace CORS with:
     CORS(app, 
-     origins=["https://task-managing-web-4647tx837-rithusha08s-projects.vercel.app", "http://localhost:3000"],
-     supports_credentials=True)
+     origins="*",
+     supports_credentials=False,
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+     allow_headers=["*"])
 
     # ── Handle OPTIONS preflight requests ───────────────────────
     @app.before_request
