@@ -39,11 +39,17 @@ def create_app():
         }
 
     # ── CORS Configuration ──────────────────────────────────────
+    # CORS(app, 
+    #      origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    #      supports_credentials=True,
+    #      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    #      allow_headers=["Content-Type", "Authorization"])
+    # In create_app(), change CORS to:
     CORS(app, 
-         origins=["http://localhost:3000", "http://127.0.0.1:3000"],
-         supports_credentials=True,
-         methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-         allow_headers=["Content-Type", "Authorization"])
+        origins=[os.getenv("FRONTEND_URL", "http://localhost:3000")],
+        supports_credentials=True,
+        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+        allow_headers=["Content-Type", "Authorization"])
 
     # ── Handle OPTIONS preflight requests ───────────────────────
     @app.before_request
