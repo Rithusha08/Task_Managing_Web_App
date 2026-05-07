@@ -108,8 +108,8 @@ from models import db, Project, User
 
 project_bp = Blueprint('project', __name__)
 
-@project_bp.route('/', methods=['GET'])
-@project_bp.route('', methods=['GET'])
+@project_bp.route('/projects', methods=['GET'])
+# @project_bp.route('', methods=['GET'])
 @jwt_required()
 def get_projects():
     try:
@@ -119,8 +119,8 @@ def get_projects():
         print(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
-@project_bp.route('/', methods=['POST'])
-@project_bp.route('', methods=['POST'])
+@project_bp.route('/projects', methods=['POST'])
+# @project_bp.route('', methods=['POST'])
 @jwt_required()
 def create_project():
     try:
