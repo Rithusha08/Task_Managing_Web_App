@@ -51,7 +51,7 @@ def create_app():
     #     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     #     allow_headers=["Content-Type", "Authorization"])
     CORS(app, 
-     origins=["https://your-frontend.vercel.app"],
+     origins=["https://task-managing-web-app.vercel.app", "http://localhost:3000"],
      supports_credentials=True)
 
     # ── Handle OPTIONS preflight requests ───────────────────────
