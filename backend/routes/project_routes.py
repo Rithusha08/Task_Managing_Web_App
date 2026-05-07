@@ -149,7 +149,7 @@ def create_project():
         print(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
-@project_bp.route('/<int:project_id>', methods=['DELETE'])
+@project_bp.route('/projects/<int:project_id>', methods=['DELETE'])
 @jwt_required()
 def delete_project(project_id):
     try:
